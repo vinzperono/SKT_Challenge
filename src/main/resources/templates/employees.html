@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Employee Data Management</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(employees)}">
+        <h2>Employee Data List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Join Date</th>
+                <th>Age</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th><a th:href="${'/get/employees/sorted/salary'}">Salary</a></th>
+                <th>Address</th>
+            </tr>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}"><a href="/employee/${employee.id}">Id</a></td>
+                <td th:text="${employee.name}">Name</td>
+                <td th:text="${employee.joinDate}">Join Date</td>
+                <td th:text="${employee.age}">Age</td>
+                <td th:text="${employee.company}">Company</td>
+                <td th:text="${employee.email}">Email</td>
+                <td th:text="${employee.phone}">Phone</td>
+                <td th:text="${employee.salary}">Salary</td>
+                <td th:text="${employee.address}">Address</td>
+                <td><a th:href="${'/employee/' + employee.id}">View</a></td>
+                <td><a th:href="${'/employee/edit/' + employee.id}">Edit</a></td>
+                <td><a th:href="${'/employee/delete/' + employee.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
